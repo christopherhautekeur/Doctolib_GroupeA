@@ -1,0 +1,22 @@
+﻿<Window x:Class="Hopital.Afficher_Tout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopital"
+        mc:Ignorable="d"
+        Title="Afficher_Tout" Height="375" Width="700">
+    <Grid Margin="0,10,0,0">
+        <GroupBox Header="Choix" Background="Ivory" Height="70" VerticalAlignment="Top" VerticalContentAlignment="Center">
+            <StackPanel x:Name="choix_liste"  Height="50" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="550">
+                <RadioButton GroupName="List" Content="TOUS LES MEDECINS" x:Name="RBtMed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="List" Content="TOUS LES PATIENTS" x:Name="RBtPat" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="95,0,95,0"/>
+                <RadioButton GroupName="List" Content="TOUS LES RDV" x:Name="RBtRdv" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Margin="0,70,0,0" Height="250" Width="650">
+            <DataGrid x:Name="DataGridView" Height="250" Width="650"></DataGrid>
+        </StackPanel>
+
+    </Grid>
+</Window>
