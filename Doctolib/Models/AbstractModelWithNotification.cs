@@ -12,11 +12,7 @@ namespace Doctolib.Models
 
         protected void RaisePropertyChange(string propertyName)
         {
-            //if (PropertyChanged != null)
-            //{
-            //    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            //}
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // Ecriture alternative
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
