@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Doctolib.Models
 {
-    class Medecin
+    public class Medecin : AbstractModelWithNotification
     {
+
+
+
     }
 }

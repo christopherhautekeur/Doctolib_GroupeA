@@ -6,5 +6,8 @@ namespace Doctolib.Models
 {
     class RDV
     {
+
+
+
     }
 }
