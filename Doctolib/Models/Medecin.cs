@@ -97,7 +97,7 @@ namespace Doctolib.Models
                 medecin.Code = reader.GetInt32(0);
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
-                medecin.Embauche = Convert.ToDateTime(reader.GetString(3));
+                medecin.Embauche = reader.GetDateTime(3);
                 medecin.Specialite = reader.GetString(4);
 
                 medecins.Add(medecin);
@@ -131,7 +131,7 @@ namespace Doctolib.Models
                 medecin.Code = reader.GetInt32(0);
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
-                medecin.Embauche = Convert.ToDateTime(reader.GetString(3));
+                medecin.Embauche = reader.GetDateTime(3);
                 medecin.Specialite = reader.GetString(4);
 
                 medecins.Add(medecin);
@@ -161,7 +161,7 @@ namespace Doctolib.Models
                 medecin.Code = reader.GetInt32(0);
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
-                medecin.Embauche = Convert.ToDateTime(reader.GetString(3));
+                medecin.Embauche = reader.GetDateTime(3);
                 medecin.Specialite = reader.GetString(4);
             }
 

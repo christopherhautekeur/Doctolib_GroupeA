@@ -29,7 +29,7 @@ namespace Doctolib.Models
 
         public bool Save()
         {
-            string request = "INSERT INTO RDV (date, heure, codeMedecin, codePatient) OUTPUT INSERTED.id VALUES (@date, @heure, @codeMedecin, @codePatient)";
+            string request = "INSERT INTO RDV (DateRDv, HeureRDV, codeMedecin, codePatient) OUTPUT INSERTED.NumeroRDV VALUES (@date, @heure, @codeMedecin, @codePatient)";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@date", Date));
             command.Parameters.Add(new SqlParameter("@heure", Heure));
@@ -44,7 +44,7 @@ namespace Doctolib.Models
 
         public bool Delete()
         {
-            string request = "DELETE FROM RDV WHERE numero = @numero";
+            string request = "DELETE FROM RDV WHERE NumeroRDV = @numero";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@numero", Numero));
             DataBase.Connection.Open();
@@ -56,7 +56,7 @@ namespace Doctolib.Models
 
         public bool Update()
         {
-            string request = "UPDATE patient SET date = @date, heure = @heure, codeMedecin = @codeMedecin, codePatient = @codePatient WHERE numero = @numero";
+            string request = "UPDATE patient SET DateRDV = @date, HeureRDV = @heure, codeMedecin = @codeMedecin, codePatient = @codePatient WHERE NumeroRDV = @numero";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@date", Date));
             command.Parameters.Add(new SqlParameter("@heure", Heure));
@@ -74,7 +74,7 @@ namespace Doctolib.Models
         {
 
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT numero, date, heure, codeMedecin, codePatient, m.nom, p.nom FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.code INNER JOIN Patient AS p ON codePatient = p.code WHERE date = @date ORDER BY numero ASC";
+            string request = "SELECT NumeroRDV, DateRDV, HeureRDV, codeMedecin, codePatient, m.NomMedecin, p.NomPatient FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON codePatient = p.CodePatient WHERE DateRDV = @date ORDER BY NumeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@date", date));
             DataBase.Connection.Open();
@@ -106,7 +106,7 @@ namespace Doctolib.Models
         public static List<RDV> GetByCodePatient(int codePatient)
         {
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT numero, date, heure, codeMedecin, codePatient, m.nom, p.nom FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.code INNER JOIN Patient AS p ON codePatient = p.code WHERE numero = @codePatient ORDER BY numero ASC";
+            string request = "SELECT NumeroRDV, DateRDV, HeureRDV, codeMedecin, codePatient, m.NomMedecin, p.NomPatient FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON codePatient = p.CodePatient WHERE NumeroRDV = @codePatient ORDER BY NumeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@codePatient", codePatient));
             DataBase.Connection.Open();
@@ -138,7 +138,7 @@ namespace Doctolib.Models
         public static List<RDV> GetAll()
         {
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT numero, date, heure, codeMedecin, codePatient, m.nom, p.nom FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.code INNER JOIN Patient AS p ON codePatient = p.code ORDER BY numero ASC";
+            string request = "SELECT r.NumeroRDV, r.DateRDV, r.HeureRDV, r.codeMedecin, r.codePatient, m.NomMedecin, p.NomPatient FROM RDV r INNER JOIN Medecin AS m ON r.codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON r.codePatient = p.CodePatient ORDER BY r.numeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
             DataBase.Connection.Open();
             reader = command.ExecuteReader();

@@ -28,7 +28,7 @@ namespace Doctolib.Models
 
         public bool Save()
         {
-            string request = "INSERT INTO patient (nom, adresse, telephone, naissance, sexe) OUTPUT INSERTED.id VALUES (@nom, @adresse, @telephone, @naissance, @sexe)";
+            string request = "INSERT INTO patient (NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient) OUTPUT INSERTED.id VALUES (@nom, @adresse, @telephone, @naissance, @sexe)";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@nom", Nom));
             command.Parameters.Add(new SqlParameter("@adresse", Adresse));
@@ -44,7 +44,7 @@ namespace Doctolib.Models
 
         public bool Delete()
         {
-            string request = "DELETE FROM patient WHERE code = @code";
+            string request = "DELETE FROM patient WHERE CodePatient = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", Code));
             DataBase.Connection.Open();
@@ -56,7 +56,7 @@ namespace Doctolib.Models
 
         public bool Update()
         {
-            string request = "UPDATE patient SET nom = @nom, adresse = @adresse, telephone = @telephone, naissance = @naissance, sexe = @sexe WHERE code = @code";
+            string request = "UPDATE patient SET NomPatient = @nom, AdressePatient = @adresse, TelPatient = @telephone, DateNaissance = @naissance, SexePatient = @sexe WHERE CodePatient = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@nom", Nom));
             command.Parameters.Add(new SqlParameter("@adresse", Adresse));
@@ -74,7 +74,7 @@ namespace Doctolib.Models
         {
             // Retourne un patient à partir d'un code d'identification
             Patient patient = null;
-            string request = "SELECT code, nom, adresse, telephone, naissance, sexe FROM patient INNER JOIN RDV ON code = codePatient WHERE code = @code";
+            string request = "SELECT CodePatient, NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient FROM patient p INNER JOIN RDV r ON p.CodePatient = r.CodePatient WHERE p.CodePatient = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", code));
             DataBase.Connection.Open();
@@ -101,7 +101,7 @@ namespace Doctolib.Models
         {
             // Retourne l'ensemble des contacts de la base de données "patient" sous forme de liste
             List<Patient> patients = new List<Patient>();
-            string request = "SELECT code, nom, adresse, telephone, naissance, sexe FROM patient";
+            string request = "SELECT CodePatient, NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient FROM patient";
             command = new SqlCommand(request, DataBase.Connection);
             DataBase.Connection.Open();
             reader = command.ExecuteReader();
