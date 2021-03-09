@@ -86,8 +86,8 @@ namespace Doctolib.Models
             List<Medecin> medecins = new List<Medecin>();
 
             // LEFT JOIN pour recuperer la liste des rdv en meme temps que le medecin (moins de requete)
-            request = "SELECT m.CodeMedecin, m.NomMedecin, m.TelMedecin, m.DateEmbauche, m.SpecialiteMedecin, r.NumeroRDV, r.DateRDV, r.HeureRDV, r.CodePatient "+
-                "FROM Medecin m LEFT JOIN RDV r ON m.CodeMedecin = r.CodeMedecin";
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "+
+                "FROM Medecin";
             command = new SqlCommand(request, DataBase.Connection);
 
             DataBase.Connection.Open();
@@ -118,9 +118,9 @@ namespace Doctolib.Models
         {
             List<Medecin> medecins = new List<Medecin>();
 
-            request = "SELECTm.CodeMedecin, m.NomMedecin, m.TelMedecin, m.DateEmbauche, m.SpecialiteMedecin, r.NumeroRDV, r.DateRDV, r.HeureRDV, r.CodePatient " 
-                + "FROM Medecin m LEFT JOIN RDV r ON m.CodeMedecin = r.CodeMedecin"
-                + "WHERE m.SpecialiteMedecin like @spe";
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "  
+                + "FROM Medecin "
+                + "WHERE SpecialiteMedecin like @spe";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.VarChar) { Value = specialite });
 
@@ -151,7 +151,7 @@ namespace Doctolib.Models
         {
             Medecin medecin = null;
 
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin"
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "
                 + "WHERE CodeMedecin = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.Int) { Value = code });
