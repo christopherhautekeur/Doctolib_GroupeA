@@ -1,0 +1,63 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopital"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Hopital.Gestion_Patients"
+        mc:Ignorable="d"
+        Background="Azure"
+        Title="Gestion_Patients" Height="240" Width="700">
+
+
+    <Grid>
+        <GroupBox Header="Gestion des patients">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="630">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="1" Content="CODE"/>
+                <ComboBox Grid.Row="0" Grid.Column="2" x:Name="essai_patient" Height="20" Width="170" IsEditable="False"/>
+                <Button Grid.Row="0" Grid.Column="3" x:Name="Btn_new" Height="20" Width="150" Content="NOUVEAU"/>
+
+                <Label Grid.Row="1" Grid.Column="1" Content="NOM"/>
+                <TextBox Grid.Row="1" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="nom_patient"/>
+                
+                <Label Grid.Row="2" Grid.Column="1" Content="ADRESSE"/>
+                <TextBox Grid.Row="2" Grid.Column="2" x:Name="adresse_patient" HorizontalContentAlignment="Center" Width="170" Height="45" BorderBrush="LightGray" Grid.RowSpan="2" Text="adresse_patient" TextWrapping="Wrap"/>
+                <Button Grid.Row="2" Grid.Column="3" x:Name="Btn_add" Height="20" Width="150" Content="AJOUTER"/>
+
+                <Label Grid.Row="3" Grid.Column="1" Content=""/>
+                <Button Grid.Row="3" Grid.Column="3" x:Name="Btn_mod" Height="20" Width="150" Content="MODIFIER"/>
+
+                <Label Grid.Row="4" Grid.Column="1" Content="TELEPHONE"/>
+                <TextBox Grid.Row="4" Grid.Column="2" x:Name="telephone_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="telephone_patient"/>
+                <Button Grid.Row="4" Grid.Column="3" x:Name="Btn_del" Height="20" Width="150" Content="SUPPRIMER"/>
+
+                <Label Grid.Row="5" Grid.Column="1" Content="DATE DE NAISSANCE"/>
+                <DatePicker Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Height="25" Width="170" x:Name="date_patient" BorderBrush="LightGray" />
+                <Button Grid.Row="5" Grid.Column="3" x:Name="Btn_exit" Height="20" Width="150" Content="SORTIR" VerticalAlignment="Top" Margin="0,2,0,0"/>
+
+                <Label Grid.Row="6" Grid.Column="1" Content="SEXE"/>
+                <StackPanel Grid.Row="6" Grid.Column="2" x:Name="sexe_patient"  Height="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="170">
+                    <RadioButton GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0"/>
+                    <RadioButton GroupName="Sex" Content="F" x:Name="RBtF" Margin="90,0,0,0"/>
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
