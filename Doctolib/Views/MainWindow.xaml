@@ -10,12 +10,12 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Gestion">
-                <MenuItem Header="_Gestion des Medecins"/>
-                <MenuItem Header="_Gestion des Patients"/>
-                <MenuItem Header="_Gestion des RDV"/>
+                <MenuItem Header="_Gestion des Medecins" Command="{Binding MedecinCommand}"/>
+                <MenuItem Header="_Gestion des Patients" Command="{Binding PatientCommand}"/>
+                <MenuItem Header="_Gestion des RDV" Command="{Binding RDVCommand}"/>
             </MenuItem>
             <MenuItem Header="_Consultation">
-                <MenuItem Header="_Afficher tout"/>
+                <MenuItem Header="_Afficher tout" Command="{Binding AfficherCommand}"/>
                 <MenuItem Header="_Rechercher RDV par date" />
                 <MenuItem Header="_Afficher les RDV d'un patient" />
             </MenuItem>

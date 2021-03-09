@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
 	<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 

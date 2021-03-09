@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctolib.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,8 @@ namespace Hopital
         public Afficher_Tout()
         {
             InitializeComponent();
+            Afficher_ToutViewModel viewModel = new Afficher_ToutViewModel();
+            DataContext = viewModel;
         }
        
     }

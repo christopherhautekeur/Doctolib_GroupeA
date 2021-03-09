@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctolib.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -22,6 +23,8 @@ namespace Hopital
         public Gestion_Patients()
         {
             InitializeComponent();
+            Gestion_PatientsViewModel viewModel = new Gestion_PatientsViewModel();
+            DataContext = viewModel;
         }
     }
 }

@@ -15,7 +15,7 @@
             </StackPanel>
         </GroupBox>
         <StackPanel Margin="0,70,0,0" Height="250" Width="650">
-            <DataGrid x:Name="DataGridView" Height="250" Width="650"></DataGrid>
+            <DataGrid x:Name="DataGridView" Height="250" Width="650" ItemsSource="{Binding Liste}"></DataGrid>
         </StackPanel>
 
     </Grid>

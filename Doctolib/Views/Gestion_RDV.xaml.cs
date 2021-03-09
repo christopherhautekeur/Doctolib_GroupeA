@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctolib.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,8 @@ namespace Hopital
         public Gestion_RDV()
         {
             InitializeComponent();
+            Gestion_RDVViewModel viewModel = new Gestion_RDVViewModel();
+            DataContext = viewModel;
         }
     }
 }

@@ -19,10 +19,6 @@ namespace Doctolib.Models
         private static SqlCommand command;
         private static SqlDataReader reader;
 
-        public Medecin()
-        {
-            Rdvs = new List<RDV>();
-        }
 
         public int Code { get => code; set => code = value; }
         public string Nom { get => nom; set => nom = value; }
