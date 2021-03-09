@@ -356,5 +356,3 @@ MigrationBackup/
 FodyWeavers.xsd
 
 Doctolib/Data/DataBase.cs
-Doctolib/Doctolib.csproj
-Doctolib/Doctolib.csproj.user
