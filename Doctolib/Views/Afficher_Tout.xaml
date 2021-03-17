@@ -9,13 +9,19 @@
     <Grid Margin="0,10,0,0">
         <GroupBox Header="Choix" Background="Ivory" Height="70" VerticalAlignment="Top" VerticalContentAlignment="Center">
             <StackPanel x:Name="choix_liste"  Height="50" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="550">
-                <RadioButton GroupName="List" Content="TOUS LES MEDECINS" x:Name="RBtMed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <RadioButton GroupName="List" Content="TOUS LES PATIENTS" x:Name="RBtPat" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="95,0,95,0"/>
-                <RadioButton GroupName="List" Content="TOUS LES RDV" x:Name="RBtRdv" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton Command="{Binding RadioBtnCommand}" IsChecked="{Binding radioBtnMedecins}" GroupName="List" Content="TOUS LES MEDECINS" x:Name="RBtMed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton Command="{Binding RadioBtnCommand}" IsChecked="{Binding radioBtnPatients}" GroupName="List" Content="TOUS LES PATIENTS" x:Name="RBtPat" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="95,0,95,0"/>
+                <RadioButton Command="{Binding RadioBtnCommand}" IsChecked="{Binding radioBtnRdvs}" GroupName="List" Content="TOUS LES RDV" x:Name="RBtRdv" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </GroupBox>
-        <StackPanel Margin="0,70,0,0" Height="250" Width="650">
-            <DataGrid x:Name="DataGridView" Height="250" Width="650" ItemsSource="{Binding Liste}"></DataGrid>
+        <StackPanel Margin="0,70,0,0" Height="250" Width="650" Visibility="{Binding ListeMedecinsVisibility}">
+            <DataGrid x:Name="DataGridView" Height="250" Width="650" ItemsSource="{Binding ListeMedecins}"></DataGrid>
+        </StackPanel>
+        <StackPanel Margin="0,70,0,0" Height="250" Width="650" Visibility="{Binding ListePatientsVisibility}">
+            <DataGrid Height="250" Width="650" ItemsSource="{Binding ListePatients}"></DataGrid>
+        </StackPanel>
+        <StackPanel Margin="0,70,0,0" Height="250" Width="650" Visibility="{Binding ListeRdvsVisibility}">
+            <DataGrid Height="250" Width="650" ItemsSource="{Binding ListeRdvs}"></DataGrid>
         </StackPanel>
 
     </Grid>
