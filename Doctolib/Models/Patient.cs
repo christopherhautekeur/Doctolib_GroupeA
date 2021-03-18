@@ -19,7 +19,10 @@ namespace Doctolib.Models
         private static SqlDataReader reader;
 
 
-        public int Code { get => code; set => code = value; }
+        public int Code
+        {
+            get => code; set { code = value; RaisePropertyChange("Code"); }
+        }
         public string Nom { get => nom; set => nom = value; }
         public string Adresse { get => adresse; set => adresse = value; }
         public string Telephone { get => telephone; set => telephone = value; }
@@ -28,7 +31,7 @@ namespace Doctolib.Models
 
         public bool Save()
         {
-            string request = "INSERT INTO patient (NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient) OUTPUT INSERTED.id VALUES (@nom, @adresse, @telephone, @naissance, @sexe)";
+            string request = "INSERT INTO patient (NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient) OUTPUT INSERTED.CodePatient VALUES (@nom, @adresse, @telephone, @naissance, @sexe)";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@nom", Nom));
             command.Parameters.Add(new SqlParameter("@adresse", Adresse));
@@ -63,6 +66,7 @@ namespace Doctolib.Models
             command.Parameters.Add(new SqlParameter("@telephone", Telephone));
             command.Parameters.Add(new SqlParameter("@naissance", Naissance));
             command.Parameters.Add(new SqlParameter("@sexe", Sexe));
+            command.Parameters.Add(new SqlParameter("@code", Code));
             DataBase.Connection.Open();
             int nbRow = command.ExecuteNonQuery();
             command.Dispose();

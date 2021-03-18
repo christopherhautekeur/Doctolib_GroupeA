@@ -34,6 +34,13 @@ namespace Doctolib.ViewModels
 
         public void ActionRadioBtnChanged()
         {
+            if(radioBtnMedecins)
+                ListeMedecins = new ObservableCollection<Medecin>(Medecin.GetListeMedecins());
+            else if(radioBtnPatients)
+                ListePatients = new ObservableCollection<Patient>(Patient.GetAll());
+            else
+                ListeRdvs = new ObservableCollection<RDV>(RDV.GetAll());
+
             RaiseAllChanged();
         }
 

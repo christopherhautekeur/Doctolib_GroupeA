@@ -30,31 +30,30 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="1" Content="CODE"/>
-                <ComboBox Grid.Row="0" Grid.Column="2" x:Name="essai_patient" Height="20" Width="170" IsEditable="False"/>
-                <Button Grid.Row="0" Grid.Column="3" x:Name="Btn_new" Height="20" Width="150" Content="NOUVEAU"/>
+                <ComboBox ItemsSource="{Binding Patients}" SelectedItem="{Binding Patient}" DisplayMemberPath="Code" Grid.Row="0" Grid.Column="2" x:Name="essai_patient" Height="20" Width="170" IsEditable="False"/>
+                <Button Command="{Binding NewCommand}" Grid.Row="0" Grid.Column="3" x:Name="Btn_new" Height="20" Width="150" Content="NOUVEAU"/>
 
                 <Label Grid.Row="1" Grid.Column="1" Content="NOM"/>
-                <TextBox Grid.Row="1" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="nom_patient"/>
+                <TextBox Grid.Row="1" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="{Binding Nom}"/>
                 
                 <Label Grid.Row="2" Grid.Column="1" Content="ADRESSE"/>
-                <TextBox Grid.Row="2" Grid.Column="2" x:Name="adresse_patient" HorizontalContentAlignment="Center" Width="170" Height="45" BorderBrush="LightGray" Grid.RowSpan="2" Text="adresse_patient" TextWrapping="Wrap"/>
-                <Button Grid.Row="2" Grid.Column="3" x:Name="Btn_add" Height="20" Width="150" Content="AJOUTER"/>
+                <TextBox Grid.Row="2" Grid.Column="2" x:Name="adresse_patient" HorizontalContentAlignment="Center" Width="170" Height="45" BorderBrush="LightGray" Grid.RowSpan="2" Text="{Binding Adresse}" TextWrapping="Wrap"/>
+                <Button Command="{Binding AjoutCommand}" Grid.Row="2" Grid.Column="3" x:Name="Btn_add" Height="20" Width="150" Content="AJOUTER"/>
 
                 <Label Grid.Row="3" Grid.Column="1" Content=""/>
-                <Button Grid.Row="3" Grid.Column="3" x:Name="Btn_mod" Height="20" Width="150" Content="MODIFIER"/>
+                <Button Command="{Binding ModifCommand}" Grid.Row="3" Grid.Column="3" x:Name="Btn_mod" Height="20" Width="150" Content="MODIFIER"/>
 
                 <Label Grid.Row="4" Grid.Column="1" Content="TELEPHONE"/>
-                <TextBox Grid.Row="4" Grid.Column="2" x:Name="telephone_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="telephone_patient"/>
-                <Button Grid.Row="4" Grid.Column="3" x:Name="Btn_del" Height="20" Width="150" Content="SUPPRIMER"/>
+                <TextBox Grid.Row="4" Grid.Column="2" x:Name="telephone_patient" HorizontalContentAlignment="Center" Height="20" Width="170" BorderBrush="LightGray" Text="{Binding Telephone}"/>
+                <Button Command="{Binding DeleteCommand}" Grid.Row="4" Grid.Column="3" x:Name="Btn_del" Height="20" Width="150" Content="SUPPRIMER"/>
 
                 <Label Grid.Row="5" Grid.Column="1" Content="DATE DE NAISSANCE"/>
-                <DatePicker Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Height="25" Width="170" x:Name="date_patient" BorderBrush="LightGray" />
-                <Button Grid.Row="5" Grid.Column="3" x:Name="Btn_exit" Height="20" Width="150" Content="SORTIR" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <DatePicker SelectedDate="{Binding Naissance}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Height="25" Width="170" x:Name="date_patient" BorderBrush="LightGray" />
 
                 <Label Grid.Row="6" Grid.Column="1" Content="SEXE"/>
                 <StackPanel Grid.Row="6" Grid.Column="2" x:Name="sexe_patient"  Height="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="170">
-                    <RadioButton GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0"/>
-                    <RadioButton GroupName="Sex" Content="F" x:Name="RBtF" Margin="90,0,0,0"/>
+                    <RadioButton IsChecked="{Binding btnSexeM}" GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0"/>
+                    <RadioButton IsChecked="{Binding btnSexeF}" GroupName="Sex" Content="F" x:Name="RBtF" Margin="90,0,0,0"/>
                 </StackPanel>
 
             </Grid>
