@@ -56,7 +56,7 @@ namespace Doctolib.Models
 
         public bool Update()
         {
-            string request = "UPDATE patient SET DateRDV = @date, HeureRDV = @heure, codeMedecin = @codeMedecin, codePatient = @codePatient WHERE NumeroRDV = @numero";
+            string request = "UPDATE RDV SET DateRDV = @date, HeureRDV = @heure, codeMedecin = @codeMedecin, codePatient = @codePatient WHERE NumeroRDV = @numero";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@date", Date));
             command.Parameters.Add(new SqlParameter("@heure", Heure));
@@ -106,28 +106,25 @@ namespace Doctolib.Models
         public static List<RDV> GetByCodePatient(int codePatient)
         {
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT NumeroRDV, DateRDV, HeureRDV, codeMedecin, codePatient, m.NomMedecin, p.NomPatient FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON codePatient = p.CodePatient WHERE NumeroRDV = @codePatient ORDER BY NumeroRDV ASC";
+            string request = "SELECT r.NumeroRDV, r.DateRDV, r.HeureRDV, r.codeMedecin, r.codePatient, m.NomMedecin, p.NomPatient FROM RDV AS r INNER JOIN Medecin AS m ON r.codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON r.codePatient = p.CodePatient WHERE r.CodePatient = @codePatient ORDER BY NumeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@codePatient", codePatient));
             DataBase.Connection.Open();
             reader = command.ExecuteReader();
-            RDV rdv = null;
             while (reader.Read())
             {
-                if (rdv == null || rdv.Numero != reader.GetInt32(0))
+                RDV rdv = new RDV()
                 {
-                    rdv = new RDV()
-                    {
-                        Numero = reader.GetInt32(0),
-                        Date = reader.GetDateTime(1),
-                        Heure = reader.GetString(2),
-                        CodeMedecin = reader.GetInt32(3),
-                        CodePatient = reader.GetInt32(4),
-                        NomMedecin = reader.GetString(5),
-                        NomPatient = reader.GetString(6)
-                    };
-                    listeRDV.Add(rdv);
-                }
+                    Numero = reader.GetInt32(0),
+                    Date = reader.GetDateTime(1),
+                    Heure = reader.GetString(2),
+                    CodeMedecin = reader.GetInt32(3),
+                    CodePatient = reader.GetInt32(4),
+                    NomMedecin = reader.GetString(5),
+                    NomPatient = reader.GetString(6)
+                };
+                listeRDV.Add(rdv);
+
             }
             reader.Close();
             command.Dispose();

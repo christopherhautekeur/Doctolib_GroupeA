@@ -59,7 +59,7 @@ namespace Doctolib.ViewModels
                 rdv.CodeMedecin = medecin.Code;
                 rdv.CodePatient = patient.Code;
                 rdv.Save();
-                rdv = new RDV();
+                rdv = new RDV() { Date = DateTime.Now };
                 RaiseAllChanged();
                 MessageBox.Show("Le rendez vous a bien été enregistré");
             }

@@ -17,7 +17,7 @@
             <MenuItem Header="_Consultation">
                 <MenuItem Header="_Afficher tout" Command="{Binding AfficherCommand}"/>
                 <MenuItem Header="_Rechercher RDV par date" />
-                <MenuItem Header="_Afficher les RDV d'un patient" />
+                <MenuItem Header="_Afficher les RDV d'un patient" Command="{Binding RdvParPatientCommand}" />
             </MenuItem>
             <MenuItem Header="_Quitter">
                 <MenuItem Header="_Exit"/>

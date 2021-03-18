@@ -18,12 +18,14 @@ namespace Doctolib.ViewModels
             PatientCommand = new RelayCommand(ActionPatientCommand);
             RDVCommand = new RelayCommand(ActionRDVCommand);
             AfficherCommand = new RelayCommand(ActionAfficherCommand);
+            RdvParPatientCommand = new RelayCommand(ActionRdvParPatientCommand);
         }
 
         public ICommand MedecinCommand { get; set; }
         public ICommand PatientCommand { get; set; }
         public ICommand RDVCommand { get; set; }
         public ICommand AfficherCommand { get; set; }
+        public ICommand RdvParPatientCommand { get; set; }
 
         public void ActionMedecinCommand()
         {
@@ -46,6 +48,12 @@ namespace Doctolib.ViewModels
         public void ActionAfficherCommand()
         {
             Afficher_Tout window = new Afficher_Tout();
+            window.Show();
+        }
+
+        public void ActionRdvParPatientCommand()
+        {
+            Afficher_RDV_Patient window = new Afficher_RDV_Patient();
             window.Show();
         }
     }

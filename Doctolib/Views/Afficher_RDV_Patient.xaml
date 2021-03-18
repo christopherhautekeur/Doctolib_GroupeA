@@ -1,0 +1,115 @@
+﻿<Window x:Class="Hopital.Afficher_RDV_Patient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopital" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Afficher les RDV d'un Patient" Height="445" Width="700">
+    <Grid Margin="0,7,0,0">
+        <GroupBox Header="SAISIR CODE PATIENT" Background="Ivory" Height="60" VerticalAlignment="Top" VerticalContentAlignment="Center">
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="690">
+                <Label Content="CODE" VerticalAlignment="Center" Margin="150,0,50,0"/>
+                <ComboBox ItemsSource="{Binding Patients}" SelectedItem="{Binding Patient}" x:Name="code_patient" Height="20" Width="160" IsEditable="False" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"/>
+                                <TextBlock Text=" - "/>
+                                <TextBlock Text="{Binding Nom}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="Btn_Sortie" Height="20" Width="70" Content="QUITTER" VerticalAlignment="Center" Margin="50,0,0,0"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="INFO PATIENT" Height="90" Margin="0,70" VerticalAlignment="Top" VerticalContentAlignment="Center">
+            <StackPanel IsEnabled="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.25*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="NOM"/>
+                    <TextBox Text="{Binding Nom}" Grid.Row="0" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="ADRESSE"/>
+                    <TextBox Text="{Binding Adresse}" Grid.Row="0" Grid.Column="5" x:Name="adresse_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="" Height="10"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="DATE DE NAIS"/>
+                    <TextBox Text="{Binding Naissance}" Grid.Row="2" Grid.Column="2" x:Name="date_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <Label Grid.Row="2" Grid.Column="4" Content="SEXE"/>
+                    <StackPanel Grid.Row="2" Grid.Column="5" Height="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120">
+                        <RadioButton IsChecked="{Binding SexeM}" GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0" IsEnabled="False"/>
+                        <RadioButton IsChecked="{Binding SexeF}" GroupName="Sex" Content="F" x:Name="RBtF" Margin="40,0,0,0" IsEnabled="False"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Margin="0,170,0,0" >
+            <DataGrid ItemsSource="{Binding Rdvs}" SelectedItem="{Binding Rdv}" x:Name="DataGridView" Background="Ivory"  Height="130" Width="650 " HorizontalContentAlignment="Center" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Numero RDV" Width="126" Binding="{Binding Numero}" />
+                    <DataGridTextColumn Header="Date RDV" Width="126" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                    <DataGridTextColumn Header="Heure RDV" Width="126" Binding="{Binding Heure, StringFormat={}{0:HH:MM}}" />
+                    <DataGridTextColumn Header="Code Médecin" Width="126" Binding="{Binding CodeMedecin}" />
+                    <DataGridTextColumn Header="Code Patient" Width="126" Binding="{Binding CodePatient}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <GroupBox Header="INFO PATIENT" Background="Ivory" Margin="0,310,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.15*" />
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.15*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.15*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.25*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="NUM RDV"/>
+                    <TextBox Text="{Binding NumeroRdv}" Grid.Row="0" Grid.Column="2" x:Name="numero_rdv" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="HEURE RDV"/>
+                    <TextBox Text="{Binding HeureRdv}"  Grid.Row="0" Grid.Column="5" x:Name="heure_rdv" HorizontalContentAlignment="Center" BorderBrush="LightGray" />
+
+                    <Button Command="{Binding ModifCommand}" x:Name="Btn_save" Grid.Row="0" Grid.Column="7" Content="ENREGISTRER" VerticalAlignment="Center" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="" Height="10"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="DATE RDV"/>
+                    <DatePicker SelectedDate="{Binding DateRdv}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="date_rdv" BorderBrush="LightGray"/>
+                    <Label Grid.Row="2" Grid.Column="4" Content="CODE MEDECIN"/>
+                    <ComboBox ItemsSource="{Binding Medecins}" SelectedItem="{Binding Medecin}" Grid.Row="2" Grid.Column="5" x:Name="code_medecin" IsEditable="False" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Code}"/>
+                                    <TextBlock Text=" - "/>
+                                    <TextBlock Text="{Binding Nom}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="Btn_del" Grid.Row="2" Grid.Column="7" Content="SUPPRIMER" VerticalAlignment="Center" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
