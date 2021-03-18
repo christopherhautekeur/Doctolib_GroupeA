@@ -91,9 +91,8 @@
                 <Label Grid.Row="5" Grid.Column="1" Content="HEURE RDV"/>
                 <TextBox Grid.Row="5" Grid.Column="2" x:Name="heure_rdv" HorizontalContentAlignment="Center" Height="20" Width="70" BorderBrush="LightGray" Text="{Binding Heure}"/>
 
-                <Button Grid.Row="5" Grid.Column="4" x:Name="Btn_new" Height="20" Width="110" Content="NOUVEAU" VerticalAlignment="Center" Margin="16,0,11,0"/>
-                <Button Grid.Row="5" Grid.Column="5" x:Name="Btn_exit" Height="20" Width="110" Content="SORTIE" VerticalAlignment="Center" Margin="8,0,19,0"/>
-
+                <Button Command="{Binding NewCommand}" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" x:Name="Btn_new" Height="20" Width="240" Content="NOUVEAU" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                
             </Grid>
         </GroupBox>
     </Grid>

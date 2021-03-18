@@ -26,6 +26,7 @@ namespace Doctolib.ViewModels
             Medecins = new ObservableCollection<Medecin>(Medecin.GetListeMedecins());
             rdv = new RDV() { Date = DateTime.Now };
             AjoutCommand = new RelayCommand(ActionClickAjoutButton);
+            NewCommand = new RelayCommand(ActionClickNewButton);
         }
 
         public Patient Patient { get => patient; set { patient = value; RaiseAllChanged(); } }
@@ -43,6 +44,7 @@ namespace Doctolib.ViewModels
         public string Heure { get => rdv.Heure; set => rdv.Heure = value; }
 
         public ICommand AjoutCommand { get; set; }
+        public ICommand NewCommand { get; set; }
 
         public void ActionClickAjoutButton()
         {
@@ -63,6 +65,15 @@ namespace Doctolib.ViewModels
                 RaiseAllChanged();
                 MessageBox.Show("Le rendez vous a bien été enregistré");
             }
+        }
+
+        public void ActionClickNewButton()
+        {
+            patient = null;
+            medecin = null;
+            Date = DateTime.Now;
+            Heure = "";
+            RaiseAllChanged();
         }
 
         private void RaiseAllChanged()

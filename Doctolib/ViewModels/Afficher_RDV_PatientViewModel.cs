@@ -27,6 +27,7 @@ namespace Doctolib.ViewModels
             Rdvs = new ObservableCollection<RDV>();
 
             ModifCommand = new RelayCommand(ActionClickModifButton);
+            DeleteCommand = new RelayCommand(ActionClickDeleteButton);
         }
 
         public Patient Patient { get => patient; set { patient = value; PatientChanged(); RaiseAllChanged(); } }
@@ -46,6 +47,7 @@ namespace Doctolib.ViewModels
         public DateTime DateRdv { get => Rdv != null ? Rdv.Date : DateTime.MinValue; set => Rdv.Date = value; }
 
         public ICommand ModifCommand { get; set; } 
+        public ICommand DeleteCommand { get; set; }
 
         private void PatientChanged()
         {
@@ -88,6 +90,26 @@ namespace Doctolib.ViewModels
             else
             {
                 MessageBox.Show("Veuillez selectionner un rendez vous");
+            }
+        }
+
+        public void ActionClickDeleteButton()
+        {
+            if(Rdv != null)
+            {
+                if (Rdv.Delete())
+                {
+                    MessageBox.Show($"Le rendez vous n°{Rdv.Numero} a bien été supprimer");
+                    Rdv = null;
+                    Rdvs = new ObservableCollection<RDV>(RDV.GetByCodePatient(Patient.Code));
+                    RaiseAllChanged();
+                }
+                else
+                    MessageBox.Show($"Impossible de supprimer le rendez vous");
+            }
+            else
+            {
+                MessageBox.Show("Aucun rendez selectionner");
             }
         }
 

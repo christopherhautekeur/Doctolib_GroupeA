@@ -21,7 +21,6 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button x:Name="Btn_Sortie" Height="20" Width="70" Content="QUITTER" VerticalAlignment="Center" Margin="50,0,0,0"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="INFO PATIENT" Height="90" Margin="0,70" VerticalAlignment="Top" VerticalContentAlignment="Center">
@@ -67,7 +66,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <GroupBox Header="INFO PATIENT" Background="Ivory" Margin="0,310,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center">
+        <GroupBox Header="INFO RENDEZ-VOUS" Background="Ivory" Margin="0,310,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -107,7 +106,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button x:Name="Btn_del" Grid.Row="2" Grid.Column="7" Content="SUPPRIMER" VerticalAlignment="Center" />
+                    <Button Command="{Binding DeleteCommand}" x:Name="Btn_del" Grid.Row="2" Grid.Column="7" Content="SUPPRIMER" VerticalAlignment="Center" />
                 </Grid>
             </StackPanel>
         </GroupBox>
