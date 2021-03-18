@@ -47,29 +47,49 @@
                 <Border Grid.Row="5" Grid.Column="2"  Background="Beige" />
                 
                 <Label Grid.Row="0" Grid.Column="1" Content="CODE PATIENT"/>
-                <ComboBox Grid.Row="0" Grid.Column="2" x:Name="code_patient" Height="20" Width="120" IsEditable="False"/>
+                <ComboBox ItemsSource="{Binding Patients}" SelectedItem="{Binding Patient}" Grid.Row="0" Grid.Column="2" x:Name="code_patient" Height="20" Width="120" IsEditable="False">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"/>
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding Nom}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Label Grid.Row="0" Grid.Column="4" Content="CODE MEDECIN"/>
-                <ComboBox Grid.Row="0" Grid.Column="5" x:Name="code_medecin" Height="20" Width="120" IsEditable="False"/>
+                <ComboBox ItemsSource="{Binding Medecins}" SelectedItem="{Binding Medecin}" Grid.Row="0" Grid.Column="5" x:Name="code_medecin" Height="20" Width="120" IsEditable="False">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"/>
+                                <TextBlock Text=" - "/>
+                                <TextBlock Text="{Binding Nom}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
                 <Label Grid.Row="1" Grid.Column="1"  Content="NOM PATIENT"/>
-                <TextBox Grid.Row="1" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="nom_patient"/>
+                <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="2" x:Name="nom_patient" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="{Binding NomPatient}"/>
                 <Label Grid.Row="1" Grid.Column="4"  Content="NOM MEDECIN"/>
-                <TextBox Grid.Row="1" Grid.Column="5" x:Name="nom_medecin" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="nom_medecin"/>
+                <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="5" x:Name="nom_medecin" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="{Binding NomMedecin}"/>
 
                 <Label Grid.Row="2" Grid.Column="1"  Content="SEXE PATIENT"/>
                 <StackPanel Grid.Row="2" Grid.Column="2" x:Name="sexe_patient"  Height="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">
-                    <RadioButton GroupName="Sex" Content="M" Margin="10,0,0,0"/>
-                    <RadioButton GroupName="Sex" Content="F" Margin="30,0,0,0"/>
+                    <RadioButton IsEnabled="False" IsChecked="{Binding SexeM}" GroupName="Sex" Content="M" Margin="10,0,0,0"/>
+                    <RadioButton IsEnabled="False" IsChecked="{Binding SexeF}" GroupName="Sex" Content="F" Margin="30,0,0,0"/>
                 </StackPanel>
                 <Label Grid.Row="2" Grid.Column="4" Content="SPECIALITE MEDECIN"/>
-                <TextBox Grid.Row="2" Grid.Column="6" x:Name="specialite_medecin" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="specialite_medecin"/>
+                <TextBox IsReadOnly="True" Grid.Row="2" Grid.Column="6" x:Name="specialite_medecin" HorizontalContentAlignment="Center" Height="20" Width="120" BorderBrush="LightGray" Text="{Binding SpeMedecin}"/>
 
                 <Label Grid.Row="4" Grid.Column="1" Content="DATE RDV"/>
-                <DatePicker Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Height="24" Width="120" x:Name="date_rdv" BorderBrush="LightGray" />
-                <Button Grid.Row="4" Grid.Column="4" x:Name="Btn_add" Height="20" Content="AJOUTER RDV" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="240" Margin="16,0,0,0"/>
+                <DatePicker SelectedDate="{Binding Date}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Height="24" Width="120" x:Name="date_rdv" BorderBrush="LightGray" />
+                <Button Command="{Binding AjoutCommand}" Grid.Row="4" Grid.Column="4" x:Name="Btn_add" Height="20" Content="AJOUTER RDV" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="240" Margin="16,0,0,0"/>
 
                 <Label Grid.Row="5" Grid.Column="1" Content="HEURE RDV"/>
-                <TextBox Grid.Row="5" Grid.Column="2" x:Name="heure_rdv" HorizontalContentAlignment="Center" Height="20" Width="70" BorderBrush="LightGray" Text="heure_rdv"/>
+                <TextBox Grid.Row="5" Grid.Column="2" x:Name="heure_rdv" HorizontalContentAlignment="Center" Height="20" Width="70" BorderBrush="LightGray" Text="{Binding Heure}"/>
 
                 <Button Grid.Row="5" Grid.Column="4" x:Name="Btn_new" Height="20" Width="110" Content="NOUVEAU" VerticalAlignment="Center" Margin="16,0,11,0"/>
                 <Button Grid.Row="5" Grid.Column="5" x:Name="Btn_exit" Height="20" Width="110" Content="SORTIE" VerticalAlignment="Center" Margin="8,0,19,0"/>
