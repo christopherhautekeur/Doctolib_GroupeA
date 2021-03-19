@@ -18,7 +18,7 @@ namespace Hopital
     /// </summary>
     /// 
 
-    public partial class Gestion_Patients : Window
+    public partial class Gestion_Patients : UserControl
     {
         public Gestion_Patients()
         {

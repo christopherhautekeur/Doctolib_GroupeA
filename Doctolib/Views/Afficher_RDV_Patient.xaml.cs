@@ -16,7 +16,7 @@ namespace Hopital
     /// <summary>
     /// Logique d'interaction pour Afficher_Tout.xaml
     /// </summary>
-    public partial class Afficher_RDV_Patient : Window
+    public partial class Afficher_RDV_Patient : UserControl
     {
         public Afficher_RDV_Patient()
         {

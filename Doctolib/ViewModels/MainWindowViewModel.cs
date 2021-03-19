@@ -5,23 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Doctolib.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-
-        public MainWindowViewModel()
-        {
-            MedecinCommand = new RelayCommand(ActionMedecinCommand);
-            PatientCommand = new RelayCommand(ActionPatientCommand);
-            RDVCommand = new RelayCommand(ActionRDVCommand);
-            AfficherCommand = new RelayCommand(ActionAfficherCommand);
-            RdvParPatientCommand = new RelayCommand(ActionRdvParPatientCommand);
-            RechercherRDVCommand = new RelayCommand(ActionRechercherRDVCommand);
-        }
-
         public ICommand MedecinCommand { get; set; }
         public ICommand PatientCommand { get; set; }
         public ICommand RDVCommand { get; set; }
@@ -29,7 +19,60 @@ namespace Doctolib.ViewModels
         public ICommand RdvParPatientCommand { get; set; }
         public ICommand RechercherRDVCommand { get; set; }
 
-        public void ActionMedecinCommand()
+        public MainWindowViewModel()
+        {
+
+            #region sans USERCONTROLE
+            /*MedecinCommand = new RelayCommand(ActionMedecinCommand);
+            PatientCommand = new RelayCommand(ActionPatientCommand);
+            RDVCommand = new RelayCommand(ActionRDVCommand);
+            AfficherCommand = new RelayCommand(ActionAfficherCommand);
+            RdvParPatientCommand = new RelayCommand(ActionRdvParPatientCommand);
+            RechercherRDVCommand = new RelayCommand(ActionRechercherRDVCommand);*/
+            #endregion
+
+            // Afficher les rendez vous par patient
+            RdvParPatientCommand = new RelayCommand<StackPanel>((content) =>
+            {
+                content.Children.Clear();
+                content.Children.Add(new Afficher_RDV_Patient());
+            });
+
+            // Afficher tout
+            AfficherCommand = new RelayCommand<StackPanel>((content) =>
+            {
+                content.Children.Clear();
+                content.Children.Add(new Afficher_Tout());
+            });
+
+            // Gestion Medecin
+
+            // Gestion Patient
+            PatientCommand = new RelayCommand<StackPanel>((content) =>
+            {
+                content.Children.Clear();
+                content.Children.Add(new Gestion_Patients());
+            });
+
+            // Gestion RDV
+            RDVCommand = new RelayCommand<StackPanel>((content) =>
+            {
+                content.Children.Clear();
+                content.Children.Add(new Gestion_RDV());
+            });
+
+            // Afficher RDV par Date
+            RechercherRDVCommand = new RelayCommand<StackPanel>((content) =>
+            {
+                content.Children.Clear();
+                content.Children.Add(new Rechercher_RDV());
+            });
+        }
+
+
+
+        #region Sans USERCONTROL
+        /*public void ActionMedecinCommand()
         {
             Gestion_Medecin window = new Gestion_Medecin();
             window.Show();
@@ -51,6 +94,7 @@ namespace Doctolib.ViewModels
         {
             Afficher_Tout window = new Afficher_Tout();
             window.Show();
+
         }
 
         public void ActionRdvParPatientCommand()
@@ -63,6 +107,7 @@ namespace Doctolib.ViewModels
         {
             Rechercher_RDV window = new Rechercher_RDV();
             window.Show();
-        }
+        }*/
+        #endregion
     }
 }

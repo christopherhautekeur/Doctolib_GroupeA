@@ -16,7 +16,7 @@ namespace Hopital
     /// <summary>
     /// Logique d'interaction pour Gestion_RDV.xaml
     /// </summary>
-    public partial class Gestion_RDV : Window
+    public partial class Gestion_RDV : UserControl
     {
         public Gestion_RDV()
         {

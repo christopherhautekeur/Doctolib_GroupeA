@@ -6,23 +6,26 @@
         
         xmlns:local="clr-namespace:Hopital"
         mc:Ignorable="d"
-        Title="Formulaire Principal" Height="450" Width="800">
+        Title="Formulaire Principal" Height="460" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Gestion">
-                <MenuItem Header="_Gestion des Medecins" Command="{Binding MedecinCommand}"/>
-                <MenuItem Header="_Gestion des Patients" Command="{Binding PatientCommand}"/>
-                <MenuItem Header="_Gestion des RDV" Command="{Binding RDVCommand}"/>
+                <MenuItem Header="_Gestion des Medecins" Command="{Binding MedecinCommand}" />
+                <MenuItem Header="_Gestion des Patients" Command="{Binding PatientCommand}" CommandParameter="{Binding ElementName=Content}"/>
+                <MenuItem Header="_Gestion des RDV" Command="{Binding RDVCommand}" CommandParameter="{Binding ElementName=Content}"/>
             </MenuItem>
             <MenuItem Header="_Consultation">
-                <MenuItem Header="_Afficher tout" Command="{Binding AfficherCommand}"/>
-                <MenuItem Header="_Rechercher RDV par date" Command="{Binding RechercherRDVCommand}"/>
-                <MenuItem Header="_Afficher les RDV d'un patient" Command="{Binding RdvParPatientCommand}" />
+                <MenuItem Header="_Afficher tout" Command="{Binding AfficherCommand}" CommandParameter="{Binding ElementName=Content}"/>
+                <MenuItem Header="_Rechercher RDV par date" Command="{Binding RechercherRDVCommand}" CommandParameter="{Binding ElementName=Content}"/>
+                <MenuItem Header="_Afficher les RDV d'un patient" Command="{Binding RdvParPatientCommand}" CommandParameter="{Binding ElementName=Content}" />
             </MenuItem>
             <MenuItem Header="_Quitter">
                 <MenuItem Header="_Exit"/>
             </MenuItem>
         </Menu>
+        <StackPanel x:Name="Content">
+            
+        </StackPanel>
 
     </DockPanel>
 </Window>

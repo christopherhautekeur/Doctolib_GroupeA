@@ -1,11 +1,11 @@
-﻿<Window x:Class="Hopital.Afficher_RDV_Patient"
+﻿<UserControl x:Class="Hopital.Afficher_RDV_Patient"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hopital" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Afficher les RDV d'un Patient" Height="445" Width="700">
+        d:Height="445" d:Width="700">
     <Grid Margin="0,7,0,0">
         <GroupBox Header="SAISIR CODE PATIENT" Background="Ivory" Height="60" VerticalAlignment="Top" VerticalContentAlignment="Center">
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="690">
@@ -111,4 +111,4 @@
             </StackPanel>
         </GroupBox>
     </Grid>
-</Window>
+</UserControl>

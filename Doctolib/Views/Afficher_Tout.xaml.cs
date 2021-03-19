@@ -16,7 +16,7 @@ namespace Hopital
     /// <summary>
     /// Logique d'interaction pour Afficher_Tout.xaml
     /// </summary>
-    public partial class Afficher_Tout : Window
+    public partial class Afficher_Tout : UserControl
     {
         public Afficher_Tout()
         {

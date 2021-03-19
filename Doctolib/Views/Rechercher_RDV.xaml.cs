@@ -8,7 +8,7 @@ namespace Hopital
     /// <summary>
     /// Logique d'interaction pour Rechercher_RDV.xaml
     /// </summary>
-    public partial class Rechercher_RDV : Window
+    public partial class Rechercher_RDV : UserControl
     {
         public Rechercher_RDV()
         {

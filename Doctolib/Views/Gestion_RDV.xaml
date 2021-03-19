@@ -1,4 +1,4 @@
-﻿<Window x:Class="Hopital.Gestion_RDV"
+﻿<UserControl x:Class="Hopital.Gestion_RDV"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Hopital"
         mc:Ignorable="d"
         Background="Azure"
-        Title="Gestion des Rendez-Vous" Height="220" Width="700">
+        d:Height="220" d:Width="700">
     <Grid>
         <GroupBox Header="Gestion des Rendez-Vous">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="160" Width="630">
@@ -96,4 +96,4 @@
             </Grid>
         </GroupBox>
     </Grid>
-</Window>
+</UserControl>
