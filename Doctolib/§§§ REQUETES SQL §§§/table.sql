@@ -1,6 +1,7 @@
 ﻿Drop Table if exists Patient;
 Drop Table if exists RDV;
 Drop Table if exists Medecin;
+Drop Table if exists Specialite;
 
 
 /*
@@ -41,8 +42,18 @@ CREATE TABLE dbo.Medecin
 [NomMedecin] VARCHAR(50) NOT NULL,
 [TelMedecin] VARCHAR(50) NOT NULL,
 [DateEmbauche] date NOT NULL,
-[SpecialiteMedecin] VARCHAR(50) NOT NULL,
+[IdSpecialiteMedecin] INT NOT NULL,
 PRIMARY KEY CLUSTERED ([CodeMedecin] ASC)
+);
+
+/*
+*Création table Specialite
+*/
+CREATE TABLE dbo.Specialite
+(
+[IdSpecialite] INT IDENTITY (1,1) NOT NULL,
+[NomSpecialite] VARCHAR(100) NOT NULL,
+PRIMARY KEY CLUSTERED ([IdSpecialite] ASC)
 );
 
 
@@ -58,10 +69,10 @@ INSERT INTO [dbo].[Patient] ([NomPatient], [AdressePatient], [DateNaissance], [S
 /*
 Remplissage table Medecin
 */
-INSERT INTO [dbo].[Medecin] ([NomMedecin], [TelMedecin], [DateEmbauche], [SpecialiteMedecin]) VALUES
-(N'Medecin1', N'0987654321', N'06/02/2005', N'Psychiatrie'),
-(N'Medecin2', N'0612345678', N'06/05/2009', N'Allergologie'),
-(N'Medecin3', N'0987654321', N'06/02/2003', N'Pediatrie');
+INSERT INTO [dbo].[Medecin] ([NomMedecin], [TelMedecin], [DateEmbauche], [IdSpecialiteMedecin]) VALUES
+(N'Medecin1', N'0987654321', N'06/02/2005', N'7'),
+(N'Medecin2', N'0612345678', N'06/05/2009', N'8'),
+(N'Medecin3', N'0987654321', N'06/02/2003', N'6');
 
 
 /*
@@ -72,3 +83,16 @@ INSERT INTO [dbo].[RDV] ([DateRDV], [HeureRDV], [CodeMedecin], [CodePatient]) VA
 (N'03/01/2016', N'08:00', N'2', N'1'),
 (N'02/01/2016', N'09:00', N'2', N'2'),
 (N'02/01/2016', N'10:00', N'2', N'3');
+
+/*
+Remplissage table Specialite
+*/
+INSERT INTO [dbo].[Specialite] ([NomSpecialite]) VALUES
+(N'Cardiologie'),
+(N'Chirurgie'),
+(N'Dermatologie'),
+(N'Gériatrie'),
+(N'Oncologie'),
+(N'Pédiatrie'),
+(N'Psychiatrie'),
+(N'Allergologie');

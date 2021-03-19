@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Hopital
+namespace Doctolib
 {
     /// <summary>
     /// Logique d'interaction pour Gestion_Medecin.xaml
@@ -21,8 +21,7 @@ namespace Hopital
         public Gestion_Medecin()
         {
             InitializeComponent();
-            Gestion_MedecinViewModel viewModel = new Gestion_MedecinViewModel();
-            DataContext = viewModel;
+            DataContext = new Gestion_MedecinViewModel(this);
         }
     }
 }

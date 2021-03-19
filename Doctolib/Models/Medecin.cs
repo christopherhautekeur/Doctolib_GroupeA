@@ -13,7 +13,7 @@ namespace Doctolib.Models
         private string nom;
         private string telephone;
         private DateTime embauche;
-        private string specialite;
+        private int idSpecialite;
 
         private static string request;
         private static SqlCommand command;
@@ -24,18 +24,24 @@ namespace Doctolib.Models
         public string Nom { get => nom; set => nom = value; }
         public string Telephone { get => telephone; set => telephone = value; }
         public DateTime Embauche { get => embauche; set => embauche = value; }
-        public string Specialite { get => specialite; set => specialite = value; }
+        public int IdSpecialite { get => idSpecialite; set => idSpecialite = value; }
+
+        public Medecin()
+        {
+            embauche = DateTime.Now;
+        }
+
 
         #region BDD
         public bool Save()
         {
-            request = "INSERT INTO Medecin (NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin) OUTPUT INSERTED.CodeMedecin VALUES " +
+            request = "INSERT INTO Medecin (NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin) OUTPUT INSERTED.CodeMedecin VALUES " +
                 "(@nom, @tel, @embauche, @spe)";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@nom", System.Data.SqlDbType.VarChar) { Value = Nom });
             command.Parameters.Add(new SqlParameter("@tel", System.Data.SqlDbType.VarChar) { Value = Telephone });
             command.Parameters.Add(new SqlParameter("@embauche", System.Data.SqlDbType.Date) { Value = Embauche });
-            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.VarChar) { Value = Specialite });
+            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.Int) { Value = IdSpecialite });
 
             DataBase.Connection.Open();
             Code = (int)command.ExecuteScalar();
@@ -47,12 +53,12 @@ namespace Doctolib.Models
         }
         public bool Update()
         {
-            request = "UPDATE Medecin SET NomMedecin = @nom, TelMedecin = @tel, DateEmbauche = @emabauche, SpecialiteMedecin = @spe WHERE CodeMedecin = @code";
+            request = "UPDATE Medecin SET NomMedecin = @nom, TelMedecin = @tel, DateEmbauche = @embauche, IdSpecialiteMedecin = @spe WHERE CodeMedecin = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@nom", System.Data.SqlDbType.VarChar) { Value = Nom });
             command.Parameters.Add(new SqlParameter("@tel", System.Data.SqlDbType.VarChar) { Value = Telephone });
             command.Parameters.Add(new SqlParameter("@embauche", System.Data.SqlDbType.Date) { Value = Embauche });
-            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.VarChar) { Value = Specialite });
+            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.Int) { Value = IdSpecialite });
             command.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.Int) { Value = Code });
 
             DataBase.Connection.Open();
@@ -82,7 +88,7 @@ namespace Doctolib.Models
             List<Medecin> medecins = new List<Medecin>();
 
             // LEFT JOIN pour recuperer la liste des rdv en meme temps que le medecin (moins de requete)
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "+
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin "+
                 "FROM Medecin";
             command = new SqlCommand(request, DataBase.Connection);
 
@@ -98,7 +104,7 @@ namespace Doctolib.Models
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
                 medecin.Embauche = reader.GetDateTime(3);
-                medecin.Specialite = reader.GetString(4);
+                medecin.IdSpecialite = reader.GetInt32(4);
 
                 medecins.Add(medecin);
             }
@@ -110,15 +116,15 @@ namespace Doctolib.Models
 
             return medecins;
         }
-        public static List<Medecin> GetListeMedecinsBySpecialite(string specialite)
+        public static List<Medecin> GetListeMedecinsBySpecialite(int specialite)
         {
             List<Medecin> medecins = new List<Medecin>();
 
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "  
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin "  
                 + "FROM Medecin "
-                + "WHERE SpecialiteMedecin like @spe";
+                + "WHERE ISpecialiteMedecin like @spe";
             command = new SqlCommand(request, DataBase.Connection);
-            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.VarChar) { Value = specialite });
+            command.Parameters.Add(new SqlParameter("@spe", System.Data.SqlDbType.Int) { Value = specialite });
 
             DataBase.Connection.Open();
             reader = command.ExecuteReader();
@@ -132,7 +138,7 @@ namespace Doctolib.Models
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
                 medecin.Embauche = reader.GetDateTime(3);
-                medecin.Specialite = reader.GetString(4);
+                medecin.IdSpecialite = reader.GetInt32(4);
 
                 medecins.Add(medecin);
             }
@@ -147,7 +153,7 @@ namespace Doctolib.Models
         {
             Medecin medecin = null;
 
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin "
                 + "WHERE CodeMedecin = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.Int) { Value = code });
@@ -162,7 +168,7 @@ namespace Doctolib.Models
                 medecin.Nom = reader.GetString(1);
                 medecin.Telephone = reader.GetString(2);
                 medecin.Embauche = reader.GetDateTime(3);
-                medecin.Specialite = reader.GetString(4);
+                medecin.IdSpecialite = reader.GetInt32(4);
             }
 
             reader.Close();
