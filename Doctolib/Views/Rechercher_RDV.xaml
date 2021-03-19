@@ -9,19 +9,18 @@
     <Grid Margin="0,7,0,0">
         <GroupBox Header="SAISIR LA DATE" Background="Ivory" Height="60" VerticalAlignment="Top" VerticalContentAlignment="Center">
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="690">
-                <DatePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" x:Name="date" BorderBrush="LightGray" Margin="150,0,0,0"/>
-                <Button x:Name="Btn_OK" Height="20" Width="70" Content="OK" VerticalAlignment="Center"  Margin="50,0,50,0"/>
-                <Button x:Name="Btn_Sortie" Height="20" Width="70" Content="QUITTER" VerticalAlignment="Center" />
+                <DatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" x:Name="date" BorderBrush="LightGray" Margin="150,0,0,0"/>
+                <Button Command="{Binding SearchCommand}" x:Name="Btn_OK" Height="20" Width="70" Content="OK" VerticalAlignment="Center"  Margin="50,0,50,0"/>
             </StackPanel>
         </GroupBox>
         <StackPanel Width="650" Margin="25,76,25,125">
-            <DataGrid x:Name="DataGridView" Height="140" Width="600 " HorizontalContentAlignment="Center" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
+            <DataGrid ItemsSource="{Binding Rdvs}" SelectedItem="{Binding Rdv}" x:Name="DataGridView" Height="140" Width="600 " HorizontalContentAlignment="Center" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Numero RDV" Width="116" Binding="{Binding Numerordv}" />
-                    <DataGridTextColumn Header="Date RDV" Width="116" Binding="{Binding Daterdv, StringFormat={}{0:dd/MM/yyyy}}" />
-                    <DataGridTextColumn Header="Heure RDV" Width="116" Binding="{Binding Heurerdv, StringFormat={}{0:HH:MM}}" />
-                    <DataGridTextColumn Header="Code Médecin" Width="116" Binding="{Binding Codemedecin}" />
-                    <DataGridTextColumn Header="Code Patient" Width="116" Binding="{Binding Codepatient}" />
+                    <DataGridTextColumn Header="Numero RDV" Width="116" Binding="{Binding Numero}" />
+                    <DataGridTextColumn Header="Date RDV" Width="116" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" />
+                    <DataGridTextColumn Header="Heure RDV" Width="116" Binding="{Binding Heure, StringFormat={}{0:HH:MM}}" />
+                    <DataGridTextColumn Header="Code Médecin" Width="116" Binding="{Binding CodeMedecin}" />
+                    <DataGridTextColumn Header="Code Patient" Width="116" Binding="{Binding CodePatient}" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
@@ -38,7 +37,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="NOM"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="nom_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <TextBox Text="{Binding NomMedecin}" Grid.Row="0" Grid.Column="1" x:Name="nom_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                     <Label Grid.Row="1" Grid.Column="0" Content="SPECIALITE"/>
                     <TextBox Grid.Row="1" Grid.Column="1" x:Name="specialite_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                 </Grid>
@@ -57,13 +56,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="NOM"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="nom_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <TextBox Text="{Binding NomPatient}" Grid.Row="0" Grid.Column="1" x:Name="nom_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                     <Label Grid.Row="1" Grid.Column="0" Content="DATE DE NAISSANCE"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="date_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <TextBox Text="{Binding NaissancePatient}" Grid.Row="1" Grid.Column="1" x:Name="date_patient" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="SEXE"/>
                     <StackPanel Grid.Row="2" Grid.Column="1" Height="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120">
-                        <RadioButton GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0" IsEnabled="False"/>
-                        <RadioButton GroupName="Sex" Content="F" x:Name="RBtF" Margin="40,0,0,0" IsEnabled="False"/>
+                        <RadioButton IsChecked="{Binding SexeM}" GroupName="Sex" Content="M" x:Name="RBtM" Margin="10,0,0,0" IsEnabled="False"/>
+                        <RadioButton IsChecked="{Binding SexeF}" GroupName="Sex" Content="F" x:Name="RBtF" Margin="40,0,0,0" IsEnabled="False"/>
                     </StackPanel>
                 </Grid>
             </GroupBox>

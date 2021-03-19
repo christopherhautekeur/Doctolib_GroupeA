@@ -46,7 +46,7 @@ namespace DoctolibASP
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Patient}/{action=Index}/{id?}");
             });
         }
     }

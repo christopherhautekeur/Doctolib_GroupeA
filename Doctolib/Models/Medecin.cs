@@ -152,9 +152,7 @@ namespace Doctolib.Models
         public static Medecin GetMedecinByCode(int code)
         {
             Medecin medecin = null;
-
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin "
-                + "WHERE CodeMedecin = @code";
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, IdSpecialiteMedecin FROM Medecin WHERE CodeMedecin = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.Int) { Value = code });
 
