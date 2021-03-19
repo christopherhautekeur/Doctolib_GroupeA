@@ -23,12 +23,13 @@ namespace Doctolib.ViewModels
         {
 
             #region sans USERCONTROLE
-            /*MedecinCommand = new RelayCommand(ActionMedecinCommand);
+            /*
             PatientCommand = new RelayCommand(ActionPatientCommand);
             RDVCommand = new RelayCommand(ActionRDVCommand);
             AfficherCommand = new RelayCommand(ActionAfficherCommand);
             RdvParPatientCommand = new RelayCommand(ActionRdvParPatientCommand);
             RechercherRDVCommand = new RelayCommand(ActionRechercherRDVCommand);*/
+            MedecinCommand = new RelayCommand(ActionMedecinCommand);
             #endregion
 
             // Afficher les rendez vous par patient
@@ -72,12 +73,12 @@ namespace Doctolib.ViewModels
 
 
         #region Sans USERCONTROL
-        /*public void ActionMedecinCommand()
+        public void ActionMedecinCommand()
         {
             Gestion_Medecin window = new Gestion_Medecin();
             window.Show();
         }
-
+        /*
         public void ActionPatientCommand()
         {
             Gestion_Patients window = new Gestion_Patients();
