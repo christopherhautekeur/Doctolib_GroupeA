@@ -15,7 +15,6 @@ namespace Doctolib.ViewModels
     {
         private Medecin medecin;
         private Medecin medTmp;
-        private Specialite specialite;
         private Gestion_Medecin _medecinWindow;
 
         public Medecin Medecin { get => medecin; set { if (value != null) { medecin = value; RaiseMedecinChanged(); } } }
@@ -32,6 +31,7 @@ namespace Doctolib.ViewModels
 
         public ObservableCollection<Specialite> Specialites { get; set; }
         public ObservableCollection<Medecin> Medecins { get; set; }
+        public Action CloseAction { get; set; }
 
         public ICommand SelectionChangedCommand { get; set; }
         public ICommand NewCommand { get; set; }
@@ -44,7 +44,8 @@ namespace Doctolib.ViewModels
         public Gestion_MedecinViewModel(Gestion_Medecin medecinWindow)
         {
             Medecin = new Medecin();
-            MedTmp = new Medecin();
+            //MedTmp = new Medecin();
+            // SelectionChangedCommand = new RelayCommand(ActionSelectionChangedCommand);
             NewCommand = new RelayCommand(ActionNewCommand);
             AddCommand = new RelayCommand(ActionAddCommand);
             ModCommand = new RelayCommand(ActionModCommand);
@@ -56,16 +57,19 @@ namespace Doctolib.ViewModels
             _medecinWindow = medecinWindow;
         }
 
-        public void ActionSelectionChangedCommand()
-        {
-            MedTmp = Medecins.FirstOrDefault(x => x.Code == Medecin.Code);
-        }
+        //public void ActionSelectionChangedCommand()
+        //{
+        //    MedTmp = Medecins.FirstOrDefault(x => x.Code == Medecin.Code);
+        //}
 
         public void ActionNewCommand()
         {
-            Medecin = Medecins.FirstOrDefault(x => x.Code == 0);
-            if (Medecin != null)
+            medecin = Medecins.FirstOrDefault(x => x.Code == 0);
+            if (Medecin == null)
+            {
+                Medecin = new Medecin();
                 Medecins.Add(Medecin);
+            }
             Specialite = null;
             RaiseAllChanged();
         }
@@ -74,15 +78,13 @@ namespace Doctolib.ViewModels
         {
             if (Nom != default(string) && Telephone != default(string) && NomSpe != default(string))
             {
-
+                //Specialite = new Specialite();
                 if (Code == 0)
                 {
                     IdSpecialite = Id;
                     if (Medecin.Save())
                     {
                         MessageBox.Show("Médecin enregistré");
-                        Medecin = new Medecin();
-                        Specialite = new Specialite();
                         RaiseAllChanged();
                     }
                     else
@@ -106,19 +108,18 @@ namespace Doctolib.ViewModels
         {
             if (Medecin.Code > 0 && Nom != default(string) && Telephone != default(string) && NomSpe != default(string))
             {                
-                if (MedTmp.Nom != Medecin.Nom || MedTmp.Telephone != Medecin.Telephone || MedTmp.Embauche != Medecin.Embauche || MedTmp.IdSpecialite != Medecin.IdSpecialite)
-                {
+                //if (MedTmp.Nom != Medecin.Nom || MedTmp.Telephone != Medecin.Telephone || MedTmp.Embauche != Medecin.Embauche || MedTmp.IdSpecialite != Medecin.IdSpecialite)
+                //{
                     if (Medecin.Update())
                     {
                         MessageBox.Show("Mise à jour du médecin effectuée");
                         RaiseAllChanged();
-                        Medecin = new Medecin();
                     }
                     else
                         MessageBox.Show("Erreur lors de la mise à jour du médecin");
-                }
-                else
-                    MessageBox.Show("Aucune modification n'a été apportée à ce médecin");
+                //}
+                //else
+                  //  MessageBox.Show("Aucune modification n'a été apportée à ce médecin");
             }
             else
                 MessageBox.Show("Merci de remplir tous les champs");
@@ -126,12 +127,23 @@ namespace Doctolib.ViewModels
 
         public void ActionDelCommand()
         {
-
+            if (Medecin.Code > 0)
+            {
+                if (Medecin.Delete())
+                {
+                    Medecins.Remove(Medecin);
+                    MessageBox.Show("Médecin effacé");
+                    RaiseAllChanged();
+                    Medecin = new Medecin();
+                }
+            }
+            else
+                MessageBox.Show("Aucun médecin sélectionné");
         }
 
         public void ActionExitCommand()
         {
-
+            CloseAction();
         }
 
         private void RaiseMedecinChanged()
@@ -152,10 +164,11 @@ namespace Doctolib.ViewModels
 
         private void RaiseAllChanged()
         {
-            RaiseMedecinChanged();
-            RaiseSpecialiteChanged();
             RaisePropertyChanged("Specialites");
             RaisePropertyChanged("Medecins");
+            RaiseMedecinChanged();
+            RaiseSpecialiteChanged();
+            
         }
     }
 }

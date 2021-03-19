@@ -21,7 +21,10 @@ namespace Doctolib
         public Gestion_Medecin()
         {
             InitializeComponent();
-            DataContext = new Gestion_MedecinViewModel(this);
+            Gestion_MedecinViewModel mVM = new Gestion_MedecinViewModel(this);
+            DataContext = mVM;            
+            if (mVM.CloseAction == null)
+                mVM.CloseAction = new Action(this.Close);
         }
     }
 }

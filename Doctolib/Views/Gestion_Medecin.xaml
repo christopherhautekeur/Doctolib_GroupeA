@@ -53,7 +53,7 @@
 
                 <Label Grid.Row="4" Grid.Column="1" Content="SPECIALITE" />
                 <ComboBox Grid.Row="4" Grid.Column="2" x:Name="specialite_medecin" Height="25" Width="170" ItemsSource="{Binding Specialites, Mode=TwoWay}" SelectedItem="{Binding Specialite, Mode=TwoWay}" DisplayMemberPath="Nom"/>
-                <Button Grid.Row="4" Grid.Column="3" Command="{Binding ExitCommand}" x:Name="Btn_exit" Height="20" Width="150" Content="SORTIR" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                <Button Grid.Row="4" Grid.Column="3" Command="{Binding ExitCommand}" x:Name="Btn_exit" Height="20" Width="150" Content="EXIT" VerticalAlignment="Top" Margin="0,2,0,0" />
             </Grid>
         </GroupBox>
     </Grid>

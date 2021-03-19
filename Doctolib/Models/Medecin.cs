@@ -20,7 +20,7 @@ namespace Doctolib.Models
         private static SqlDataReader reader;
 
 
-        public int Code { get => code; set => code = value; }
+        public int Code { get => code; set { code = value; RaisePropertyChange("Code"); } }
         public string Nom { get => nom; set => nom = value; }
         public string Telephone { get => telephone; set => telephone = value; }
         public DateTime Embauche { get => embauche; set => embauche = value; }
