@@ -102,7 +102,7 @@ namespace Doctolib.ViewModels
                     Patient tmp = patient;
                     ActionClickNewButton();
                     Patients.Remove(tmp);
-                    patient.Delete();
+                    tmp.Delete();
                     RaiseAllChanged();
                     MessageBox.Show($"Le patient n°{tmp.Code} supprimé");
                 }
