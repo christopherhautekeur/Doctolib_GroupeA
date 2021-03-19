@@ -36,7 +36,7 @@ namespace Doctolib.ViewModels
 
         public string NomPatient { get => Patient != null ? Patient.Nom : ""; set => Patient.Nom = value; }
         public string NomMedecin { get => Medecin != null ? Medecin.Nom : ""; set => Medecin.Nom = value; }
-        public string SpeMedecin { get => Medecin != null ? Medecin.Specialite : ""; set => Medecin.Specialite = value; }
+        public string SpeMedecin { get => Medecin != null ? Specialite.GetSpecialiteById(Medecin.IdSpecialite).Nom : ""; set => Medecin.IdSpecialite = Convert.ToInt32(value); }
         public bool SexeM { get => Patient != null ? Patient.Sexe == "M" : false; set { patient.Sexe = value == true ? "M" : "F"; } }
         public bool SexeF { get => Patient != null ? Patient.Sexe == "F" : false; set { patient.Sexe = value == true ? "F" : "M"; } }
 

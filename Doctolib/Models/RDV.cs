@@ -74,28 +74,28 @@ namespace Doctolib.Models
         {
 
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT r.NumeroRDV, r.DateRDV, r.HeureRDV, r.codeMedecin, r.codePatient, m.NomMedecin, p.NomPatient FROM RDV r INNER JOIN Medecin AS m ON r.codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON r.codePatient = p.CodePatient WHERE r.DateRDV = @date ORDER BY NumeroRDV ASC";
+            string request = "SELECT r.NumeroRDV, r.DateRDV, r.HeureRDV, r.codeMedecin, r.codePatient, m.NomMedecin, p.NomPatient "
+                +" FROM RDV r INNER JOIN Medecin AS m ON r.codeMedecin = m.CodeMedecin " 
+                +" INNER JOIN Patient AS p ON r.codePatient = p.CodePatient WHERE r.DateRDV = @date ORDER BY NumeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@date", System.Data.SqlDbType.Date) { Value = date.Date });
             DataBase.Connection.Open();
             reader = command.ExecuteReader();
-            RDV rdv = null;
             while (reader.Read())
             {
-                if (rdv == null || rdv.Numero != reader.GetInt32(0))
+
+                RDV rdv = new RDV()
                 {
-                    rdv = new RDV()
-                    {
-                        Numero = reader.GetInt32(0),
-                        Date = reader.GetDateTime(1),
-                        Heure = reader.GetString(2),
-                        CodeMedecin = reader.GetInt32(3),
-                        CodePatient = reader.GetInt32(4),
-                        NomMedecin = reader.GetString(5),
-                        NomPatient = reader.GetString(6)
-                    };
-                    listeRDV.Add(rdv);
-                }
+                    Numero = reader.GetInt32(0),
+                    Date = reader.GetDateTime(1),
+                    Heure = reader.GetString(2),
+                    CodeMedecin = reader.GetInt32(3),
+                    CodePatient = reader.GetInt32(4),
+                    NomMedecin = reader.GetString(5),
+                    NomPatient = reader.GetString(6)
+                };
+                listeRDV.Add(rdv);
+
             }
             reader.Close();
             command.Dispose();

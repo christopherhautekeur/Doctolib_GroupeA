@@ -92,7 +92,7 @@ namespace Doctolib.Models
         {
             Specialite specialite = null;
 
-            request = "SELECT IdSpecialite, NomSpecialite WHERE IdSpecialite = @id";
+            request = "SELECT IdSpecialite, NomSpecialite FROM Specialite WHERE IdSpecialite = @id";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int) { Value = id });
 

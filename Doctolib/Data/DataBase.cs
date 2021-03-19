@@ -7,7 +7,7 @@ namespace Doctolib.Data
 {
     class DataBase
     {
-        private static string chaine = @"Data Source=(LocalDB)\BaseM2iSQL;Integrated Security=True";
+        private static string chaine = @"Data Source=(LocalDB)\M2iProjet;Integrated Security=True";
         public static SqlConnection Connection = new SqlConnection(chaine);
     }
 }

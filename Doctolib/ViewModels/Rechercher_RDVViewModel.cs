@@ -36,6 +36,7 @@ namespace Doctolib.ViewModels
         public bool SexeF { get => patient != null && patient.Sexe == "F"; set => patient.Sexe = value == true ? "F" : "M"; }
 
         public string NomMedecin { get => medecin != null ? medecin.Nom : ""; set => medecin.Nom = value; }
+        public string SpeMedecin { get => medecin != null ? Specialite.GetSpecialiteById(medecin.IdSpecialite).Nom : ""; set => medecin.IdSpecialite = Convert.ToInt32(value); }
 
 
         public ICommand SearchCommand { get; set; }

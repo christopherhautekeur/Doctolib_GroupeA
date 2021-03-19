@@ -39,7 +39,7 @@
                     <Label Grid.Row="0" Grid.Column="0" Content="NOM"/>
                     <TextBox Text="{Binding NomMedecin}" Grid.Row="0" Grid.Column="1" x:Name="nom_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                     <Label Grid.Row="1" Grid.Column="0" Content="SPECIALITE"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="specialite_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
+                    <TextBox Text="{Binding SpeMedecin}" Grid.Row="1" Grid.Column="1" x:Name="specialite_medecin" HorizontalContentAlignment="Center" BorderBrush="LightGray" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
         </StackPanel>
