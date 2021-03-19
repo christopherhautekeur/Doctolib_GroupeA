@@ -147,7 +147,7 @@ namespace Doctolib.Models
         {
             Medecin medecin = null;
 
-            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin "
+            request = "SELECT CodeMedecin, NomMedecin, TelMedecin, DateEmbauche, SpecialiteMedecin FROM Medecin "
                 + "WHERE CodeMedecin = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.Int) { Value = code });

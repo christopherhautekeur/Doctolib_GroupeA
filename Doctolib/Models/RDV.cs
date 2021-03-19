@@ -74,9 +74,9 @@ namespace Doctolib.Models
         {
 
             List<RDV> listeRDV = new List<RDV>();
-            string request = "SELECT NumeroRDV, DateRDV, HeureRDV, codeMedecin, codePatient, m.NomMedecin, p.NomPatient FROM RDV INNER JOIN Medecin AS m ON codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON codePatient = p.CodePatient WHERE DateRDV = @date ORDER BY NumeroRDV ASC";
+            string request = "SELECT r.NumeroRDV, r.DateRDV, r.HeureRDV, r.codeMedecin, r.codePatient, m.NomMedecin, p.NomPatient FROM RDV r INNER JOIN Medecin AS m ON r.codeMedecin = m.CodeMedecin INNER JOIN Patient AS p ON r.codePatient = p.CodePatient WHERE r.DateRDV = @date ORDER BY NumeroRDV ASC";
             command = new SqlCommand(request, DataBase.Connection);
-            command.Parameters.Add(new SqlParameter("@date", date));
+            command.Parameters.Add(new SqlParameter("@date", System.Data.SqlDbType.Date) { Value = date.Date });
             DataBase.Connection.Open();
             reader = command.ExecuteReader();
             RDV rdv = null;

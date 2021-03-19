@@ -78,7 +78,7 @@ namespace Doctolib.Models
         {
             // Retourne un patient à partir d'un code d'identification
             Patient patient = null;
-            string request = "SELECT CodePatient, NomPatient, AdressePatient, TelPatient, DateNaissance, SexePatient FROM patient p INNER JOIN RDV r ON p.CodePatient = r.CodePatient WHERE p.CodePatient = @code";
+            string request = "SELECT p.CodePatient, p.NomPatient, p.AdressePatient, p.TelPatient, p.DateNaissance, p.SexePatient FROM patient p INNER JOIN RDV r ON p.CodePatient = r.CodePatient WHERE p.CodePatient = @code";
             command = new SqlCommand(request, DataBase.Connection);
             command.Parameters.Add(new SqlParameter("@code", code));
             DataBase.Connection.Open();
